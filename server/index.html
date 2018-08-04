@@ -6,6 +6,7 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
 
   </head>
 
@@ -15,10 +16,10 @@
     <script type="text/javascript">
       $(function(){
         var socket = io.connect();
-
-        socket.on('need help', function(){
-          var audio = new Audio("help.mp3");
+        socket.on('need help', function(data){
+          var audio = new Audio('/notification.mp3');
           audio.play();
+          responsiveVoice.speak(data.msg);
         });
       });
     </script>

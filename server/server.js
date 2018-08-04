@@ -16,8 +16,8 @@ app.get('/request', (req, res) => {
   res.sendFile(__dirname + '/request.html');
 });
 
-app.get('/help.mp3', (req, res) => {
-  res.sendFile(__dirname + '/help.mp3');
+app.get('/notification.mp3', (req, res) => {
+  res.sendFile(__dirname + '/notification.mp3');
 });
 
 io.sockets.on('connection', (socket) => {
@@ -32,6 +32,6 @@ io.sockets.on('connection', (socket) => {
 
   socket.on('need help', (data) => {
     console.log('Request received');
-    io.sockets.emit('need help');
+    io.sockets.emit('need help', {msg: data.msg});
   })
 });
