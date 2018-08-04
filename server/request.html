@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>IO Chat</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+  </head>
+
+  <body>
+    <button type="button" id="button">Click for help!<button>
+    <script type="text/javascript">
+      $(function(){
+        var socket = io.connect();
+
+        socket.on('need help', function(){
+          var audio = new Audio('/assistancerequested.mp3');
+          audio.play();
+        });
+
+        $("#button").click(function(){
+          socket.emit('need help');
+        });
+      });
+    </script>
+
+  </body>
+</html>
